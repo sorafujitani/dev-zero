@@ -23,6 +23,11 @@ jobs:
       - run: cargo clippy --locked --all-targets -- -D warnings
       - run: cargo test --locked
       - run: cargo build --locked
+      - name: Verify Cargo installation
+        run: |
+          cargo install --path . --locked --debug --root "$RUNNER_TEMP/cargo-install"
+          "$RUNNER_TEMP/cargo-install/bin/dz" --version
+          "$RUNNER_TEMP/cargo-install/bin/dz" --help
       - run: python3 -m tests.tui_smoke target/debug/dz
       - run: python3 tests/post_smoke.py target/debug/dz
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4

@@ -10,7 +10,50 @@ and Trending logs, threads, notifications, saved posts, stars, follows, posting,
 quoting and deleting. Posting with a GitHub SSH key through the Action endpoint also
 works without signing in.
 
-## Quick start
+## Install
+
+Supported platforms: macOS and Linux, both x86-64 and ARM64.
+Linux release binaries use musl. Windows is not supported.
+
+### Cargo
+
+Requires Rust 1.88 or newer. Build and install from GitHub:
+
+```sh
+cargo install --git https://github.com/sorafujitani/dev-zero --locked
+dz --help
+```
+
+Or install from a local checkout:
+
+```sh
+cargo install --path . --locked
+```
+
+The command is `dz`, not `dev-zero`. Ensure Cargo's binary directory
+(`~/.cargo/bin` by default) is on PATH. The crate is not published on crates.io;
+use `--git` or `--path` rather than `cargo install dev-zero`.
+Posting additionally requires OpenSSH 8.2 or newer on PATH.
+
+### Nix
+
+```sh
+nix run github:sorafujitani/dev-zero -- --help
+nix profile install github:sorafujitani/dev-zero
+```
+
+### Homebrew
+
+Requires a published release tag.
+
+```sh
+brew tap sorafujitani/dev-zero https://github.com/sorafujitani/dev-zero
+brew install sorafujitani/dev-zero/dev-zero
+```
+
+The formula builds from the versioned Git tag and requires Rust at build time.
+
+## Build from source
 
 With Nix and flakes enabled, build and run from the repository root:
 
@@ -238,63 +281,6 @@ wait before retrying a rate-limited request.
 
 For a compatible server or local test, set `DZ_BASE_URL` or pass
 `--base-url http://localhost:8080`. Supply only the origin, without `/api/v1`.
-
-## Install
-
-Supported platforms: macOS and Linux, both x86-64 and ARM64.
-Linux release binaries use musl. Windows is not supported.
-
-### Cargo
-
-Requires Rust 1.88 or newer. Build and install from GitHub:
-
-```sh
-cargo install --git https://github.com/sorafujitani/dev-zero --locked
-dz --help
-```
-
-Or install from a local checkout:
-
-```sh
-cargo install --path . --locked
-```
-
-The command is `dz`, not `dev-zero`. Ensure Cargo's binary directory
-(`~/.cargo/bin` by default) is on PATH. The crate is not published on crates.io;
-use `--git` or `--path` rather than `cargo install dev-zero`.
-Posting additionally requires OpenSSH 8.2 or newer on PATH.
-
-### Nix
-
-```sh
-nix run github:sorafujitani/dev-zero -- --help
-nix profile install github:sorafujitani/dev-zero
-```
-
-### Homebrew
-
-Requires a published release tag.
-
-```sh
-brew tap sorafujitani/dev-zero https://github.com/sorafujitani/dev-zero
-brew install sorafujitani/dev-zero/dev-zero
-```
-
-The formula builds from the versioned Git tag and requires Rust at build time.
-
-### npm
-
-Requires the npm package to be published.
-
-```sh
-npm install -g dev-zero
-# Or:
-npx dev-zero --help
-```
-
-Requires Node.js 18 or newer. One package bundles all four native binaries.
-There are no npm runtime dependencies, install scripts, or downloads at launch.
-Posting additionally requires OpenSSH 8.2 or newer on PATH.
 
 ## Development
 
