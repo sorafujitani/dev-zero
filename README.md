@@ -10,9 +10,10 @@ and Trending logs, threads, notifications, saved posts, stars, follows, posting,
 quoting and deleting. Posting with a GitHub SSH key through the Action endpoint also
 works without signing in.
 
-![The dz TUI on the Following log](docs/tui.png)
-
-![dz me in the terminal](docs/cli.png)
+<p align="center">
+  <img src="docs/tui.png" alt="The dz TUI on the Following log" width="58%">
+  <img src="docs/cli.png" alt="dz me in the terminal" width="40%">
+</p>
 
 ## Install
 
