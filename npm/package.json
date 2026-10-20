@@ -1,0 +1,33 @@
+{
+  "name": "dev-zero",
+  "version": "0.1.0",
+  "description": "A CLI and TUI for dev-null.sh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sorafujitani/dev-zero.git"
+  },
+  "bin": {
+    "dz": "bin/dz.cjs"
+  },
+  "files": [
+    "bin/",
+    "prebuilt/",
+    "README.md",
+    "LICENSE"
+  ],
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.cjs"
+  }
+}

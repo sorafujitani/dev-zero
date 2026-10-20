@@ -1,0 +1,15 @@
+{
+  "data": {
+    "username": "alice",
+    "name": "Alice",
+    "bio": "A developer.",
+    "company": null,
+    "location": null,
+    "website": null,
+    "html_url": "https://dev-null.sh/@alice",
+    "feed_url": "https://dev-null.sh/@alice/feed.atom",
+    "commits_count": 2,
+    "followers_count": 3,
+    "following_count": 4
+  }
+}

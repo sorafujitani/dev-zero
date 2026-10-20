@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "id": "00000000-0000-0000-0000-000000000001",
+      "short_hash": "0000001",
+      "body": "Hello, world!\nA second line.",
+      "parent_id": null,
+      "html_url": "https://dev-null.sh/@alice/commits/00000000-0000-0000-0000-000000000001",
+      "created_at": "2026-01-01T00:00:00Z",
+      "stars_count": 5,
+      "replies_count": 2,
+      "author": {
+        "username": "alice",
+        "name": "Alice",
+        "bio": "A developer.",
+        "company": null,
+        "location": null,
+        "website": null,
+        "html_url": "https://dev-null.sh/@alice",
+        "feed_url": "https://dev-null.sh/@alice/feed.atom",
+        "commits_count": 2,
+        "followers_count": 3,
+        "following_count": 4
+      },
+      "images": [
+        {
+          "id": 1,
+          "url": "https://example.com/image.png",
+          "width": 640,
+          "height": 480
+        }
+      ],
+      "link_preview": {
+        "title": "Example",
+        "description": "A link preview.",
+        "url": "https://example.com",
+        "embed": {
+          "provider": "YouTube",
+          "kind": "video",
+          "src": "https://example.com/embed",
+          "poster": null
+        }
+      }
+    }
+  ],
+  "links": {
+    "next": "https://dev-null.sh/api/v1/users/alice/commits?cursor=next"
+  },
+  "meta": {
+    "next_cursor": "next",
+    "per_page": 20,
+    "prev_cursor": null
+  }
+}
