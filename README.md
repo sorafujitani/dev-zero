@@ -10,6 +10,10 @@ and Trending logs, threads, notifications, saved posts, stars, follows, posting,
 quoting and deleting. Posting with a GitHub SSH key through the Action endpoint also
 works without signing in.
 
+![The dz TUI on the Following log](docs/tui.png)
+
+![dz me in the terminal](docs/cli.png)
+
 ## Install
 
 Supported platforms: macOS and Linux, both x86-64 and ARM64.
