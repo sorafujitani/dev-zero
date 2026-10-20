@@ -295,14 +295,13 @@ cargo fmt --check
 cargo clippy --locked --all-targets -- -D warnings
 cargo test --locked
 cargo build --locked
-python3 -m tests.tui_smoke target/debug/dz
-python3 tests/post_smoke.py target/debug/dz
 npm test --prefix npm
-python3 tests/package_smoke.py target/debug/dz
 nix flake check
 ```
 
-Tests use a local HTTP server, not the live API. The pseudo-terminal test checks
+Tests require Node.js 18 or newer, npm, OpenSSH 8.2 or newer, and tar on PATH.
+Python is not required. All Rust integration tests run with `cargo test --locked`.
+Tests use a local HTTP server, not the live API. The pseudo-terminal tests check
 navigation, composition, replies, failed sends, draft recovery, SSH passphrase
 prompts, quitting during reads, and terminal restoration.
 Posting tests generate disposable SSH keys and verify signatures against a local
@@ -325,7 +324,7 @@ server. They never use your keys or publish a real post.
 To assemble the npm tarball locally from all four release archives:
 
 ```sh
-python3 scripts/package-npm.py dist
+sh scripts/package-npm.sh dist
 npm pack ./npm --pack-destination dist
 ```
 

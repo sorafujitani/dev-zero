@@ -27,17 +27,9 @@ jobs:
         with:
           targets: ${{ matrix.target }}
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
-      - name: Check release versions
-        env:
-          TAG: ${{ github.ref_name }}
-        run: |
-          python3 - <<'PY'
-          import json, os, pathlib, tomllib
-          version = tomllib.loads(pathlib.Path("Cargo.toml").read_text())["package"]["version"]
-          assert os.environ["TAG"] == "v" + version, "tag must match Cargo.toml"
-          assert json.loads(pathlib.Path("npm/package.json").read_text())["version"] == version
-          assert f'tag: "v{version}"' in pathlib.Path("Formula/dev-zero.rb").read_text()
-          PY
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
       - if: runner.os == 'Linux'
         run: |
           sudo apt-get update && sudo apt-get install -y musl-tools
@@ -45,7 +37,10 @@ jobs:
             'CC=musl-gcc' \
             'CARGO_TARGET_AARCH64_UNKNOWN_LINUX_MUSL_LINKER=musl-gcc' \
             'CARGO_TARGET_X86_64_UNKNOWN_LINUX_MUSL_LINKER=musl-gcc' >> "$GITHUB_ENV"
-      - run: cargo test --locked --target ${{ matrix.target }}
+      - name: Test and check release versions
+        env:
+          TAG: ${{ github.ref_name }}
+        run: cargo test --locked --target ${{ matrix.target }}
       - run: cargo build --release --locked --target ${{ matrix.target }}
       - name: Archive
         env:
@@ -76,7 +71,7 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 24
-      - run: python3 scripts/package-npm.py dist
+      - run: sh scripts/package-npm.sh dist
       - run: npm test --prefix npm
       - run: node npm/bin/dz.cjs --version
       - run: npm pack ./npm --pack-destination dist

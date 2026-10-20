@@ -30,12 +30,22 @@
                 ./Cargo.lock
                 ./src
                 ./tests
+                ./scripts
+                ./npm
+                ./Formula
+                ./README.md
+                ./LICENSE
               ];
             };
             cargoLock.lockFile = ./Cargo.lock;
             nativeBuildInputs = [ pkgs.makeWrapper ];
-            # Session tests sign requests with ssh-keygen.
-            nativeCheckInputs = [ pkgs.openssh ];
+            nativeCheckInputs = [
+              pkgs.openssh
+              pkgs.nodejs
+            ];
+            postPatch = ''
+              patchShebangs npm/bin/dz.cjs
+            '';
             postInstall = ''
               wrapProgram "$out/bin/dz" --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.openssh ]}
             '';
@@ -77,7 +87,6 @@
               clippy
               rust-analyzer
               nodejs
-              python3
               openssh
             ];
           };
