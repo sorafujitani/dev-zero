@@ -34,6 +34,8 @@
             };
             cargoLock.lockFile = ./Cargo.lock;
             nativeBuildInputs = [ pkgs.makeWrapper ];
+            # Session tests sign requests with ssh-keygen.
+            nativeCheckInputs = [ pkgs.openssh ];
             postInstall = ''
               wrapProgram "$out/bin/dz" --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.openssh ]}
             '';
